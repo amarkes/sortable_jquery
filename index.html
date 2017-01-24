@@ -1,0 +1,203 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8">
+	<title>HTML5 Sortable jQuery Plugin</title>
+	<style>
+		header, section {
+			display: block;
+		}
+		body {
+			font-family: 'Droid Serif';
+		}
+		h1, h2 {
+			text-align: center;
+			font-weight: normal;
+		}
+		#features {
+			margin: auto;
+			width: 460px;
+			font-size: 0.9em;
+		}
+		.connected, .sortable, .exclude, .handles {
+			margin: auto;
+			padding: 0;
+			width: 310px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		.sortable.grid {
+			overflow: hidden;
+		}
+		.connected li, .sortable li, .exclude li, .handles li {
+			list-style: none;
+			border: 1px solid #CCC;
+			background: #F6F6F6;
+			font-family: "Tahoma";
+			color: #1C94C4;
+			margin: 5px;
+			padding: 5px;
+			height: 22px;
+		}
+		.handles span {
+			cursor: move;
+		}
+		li.disabled {
+			opacity: 0.5;
+		}
+		.sortable.grid li {
+			line-height: 80px;
+			float: left;
+			width: 80px;
+			height: 80px;
+			text-align: center;
+		}
+		.connected.grid li {
+			line-height: 80px;
+			float: left;
+			width: 80px;
+			height: 80px;
+			text-align: center;
+		}
+		li.highlight {
+			background: #FEE25F;
+		}
+		#connected {
+			width: 840px;
+			overflow: hidden;
+			margin: auto;
+
+		}
+		.connected {
+			float: left;
+			width: 400px;
+			border:1px solid #000;
+			min-height: 100px;
+		}
+		.connected.no2 {
+			float: right;
+		}
+		li.sortable-placeholder {
+			border: 1px dashed #CCC;
+			background: none;
+		}
+		.ui-resizable {
+		    position: relative;
+		}
+		.ui-resizable-e {
+    cursor: e-resize;
+    width: 7px;
+    right: -5px;
+    top: 0;
+    height: 100%;
+}
+.ui-resizable-handle {
+    position: absolute;
+    font-size: 0.1px;
+    display: block;
+    -ms-touch-action: none;
+    touch-action: none;
+}
+.ui-resizable-s {
+    cursor: s-resize;
+    height: 7px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+}
+.ui-resizable-handle {
+    position: absolute;
+    font-size: 0.1px;
+    display: block;
+    -ms-touch-action: none;
+    touch-action: none;
+}
+.ui-icon-gripsmall-diagonal-se {
+    background-position: -64px -224px;
+}
+.ui-icon {
+    width: 16px;
+    height: 16px;
+}
+.ui-resizable-se {
+    cursor: se-resize;
+    width: 12px;
+    height: 12px;
+    right: 1px;
+    bottom: 1px;
+}
+.ui-resizable-handle {
+    position: absolute;
+    font-size: 0.1px;
+    display: block;
+    -ms-touch-action: none;
+    touch-action: none;
+}
+.ui-icon, .ui-widget-content .ui-icon {
+    background-image: url(ui-icons_444444_256x240.png);
+}
+	</style>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<header>
+		<h1>HTML5 Sortable jQuery Plugin</h1>
+	</header>
+
+	<section>
+		<h2>Sortable Grid</h2>
+		<ul class="sortable grid">
+			<li>Item 1</li>
+			<li>Item 2</li>
+			<li>Item 3</li>
+			<li>Item 4</li>
+			<li>Item 5</li>
+			<li>Item 6</li>
+		</ul>
+	</section>
+
+	<section id="connected">
+		<h2>Connected Sortable Lists</h2>
+		<ul class="connected grid">
+			<li id="resizable" >Item 1</li>
+			<li id="resizable" >Item 2</li>
+			<li id="resizable" >Item 3</li>
+			<li id="resizable" >Item 4</li>
+			<li id="resizable" >Item 5</li>
+			<li id="resizable" >Item 6</li>
+		</ul>
+		<ul class="connected grid no2">
+			<li id="resizable"  class="highlight">Item 1</li>
+			<li id="resizable"  class="highlight">Item 2</li>
+			<li id="resizable"  class="highlight">Item 3</li>
+			<li id="resizable"  class="highlight">Item 4</li>
+			<li id="resizable"  class="highlight">Item 5</li>
+			<li id="resizable"  class="highlight">Item 6</li>
+		</ul>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="jquery.sortable.js"></script>
+	<script>
+		$(function() {
+			$('.sortable').sortable();
+			$('.connected').sortable({
+				connectWith: '.connected'
+			});
+			
+
+			$('#connected ul').each(function(){
+			  console.log( $(this).children('li').size() );
+			  for (var i = 0; i <= $(this).children('li').size(); i++) { 
+			     $(this).children('li').resizable();
+			  }
+			});
+			
+		});
+	</script>
+</body>
+</html>
